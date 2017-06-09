@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  overflow: hidden;
+}
+
+.LeftBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20%;
+  height: 100%;
+
+  z-index: 10;
+
+  background-color: #24bd3d;
+  -webkit-box-shadow: 5px 0 5px 0 #191919;
+          box-shadow: 5px 0 5px 0 #191919;
+
+  & > .LeftBar-Header {
+    width: 100%;
+    padding: 10px;
+    
+    color: white;
+    text-align: center;
+
+    background-color: #28d244;
+    -webkit-box-shadow: 0px -10px 10px 0 #191919;
+            box-shadow: 0px -10px 10px 0 #191919;
+  }
+}
+
+.Body {
+  position: absolute;
+  left: 20%;
+  top: 0;
+  bottom: 0;
+  width: 60%;
+  height: 100%;
+
+  z-index: 0;
+
+  background-color: #222222;
+
+  & > .Twitch-VideoPlayer {
+    padding: 40px;
+    margin: 0 auto;
+
+    width: 100%;
+    
+    & > iframe {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.RightBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  height: 100%;
+
+  z-index: 10;
+
+  background-color: #2D2D2D;
+  -webkit-box-shadow: -5px 0 5px 0 #191919;
+          box-shadow: -5px 0 5px 0 #191919;
+}
+
+.ChatToggle {
+  background: none;
+  border: none;
+
+  padding: 10px;
+  
+  position: absolute;
+  top: 0;
+  right: 0;
+
+
+  cursor: pointer;
+
+  color: white;
+  font-size: 14px;
+}
+
+.UI-Wrapper {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 400px;
+
+  color: white;
+
+  & .LoginButton {
+    padding: 0;
+
+    width: 170px;
+    height: 32px;
+    background: transparent;
+    background: url(http://ttv-api.s3.amazonaws.com/assets/connect_dark.png);
+    background-repeat: no-repeat;
+
+    border: none;
+    cursor: pointer;
+
+    display: block;
+    margin: 0 auto;
+  }
+}

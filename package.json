@@ -1,0 +1,26 @@
+{
+  "name": "tmc2017",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "electron": "^1.6.10",
+    "jquery": "^3.2.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "twitch-sdk": "^0.3.1"
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "0.0.2",
+    "npm-run-all": "^4.0.2",
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+  }
+}

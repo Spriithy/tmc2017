@@ -1,0 +1,39 @@
+.BettingUI {
+  width: 100%;
+  margin: 0;
+
+  padding: 40px;
+}
+
+.BetInputWrapper {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 3px;
+
+  outline: none;
+
+  & > * {
+    vertical-align: top;
+    border: 0;
+    border-radius: 3px;
+    margin: 0;
+    padding: 3px 10px;
+    border-radius: 3px;
+    height: 44px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  & input {
+    width: 100px;
+    border: 2px solid #28d244;
+  }
+
+  & .BetInput-Choices {
+    padding: 20px;
+
+    & .BetInput-Option {
+      padding: 5px;
+    }
+  }
+}
