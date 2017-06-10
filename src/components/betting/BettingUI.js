@@ -9,15 +9,9 @@ export default class BettingUI extends React.Component {
   render = () => {
     return (
       <div className="BettingUI">
-        
-        <div className="UILeft">
-          <h3 className="Currency">Vous possédez <span className="Balance">{this.props.client.balance}</span> zCoins</h3>
-          <BetInput client={this.props.client} racers={this.props.client.racers}/>
-        </div>
-
-        <div className="UIRight">
-          {this.props.mod ? <Moderation client={this.props.client} /> : <span></span>}
-        </div>
+        <h3 className="Currency">Vous possédez <span className="Balance">{this.props.client.balance}</span> zCoins</h3>
+        <BetInput client={this.props.client} racers={this.props.client.racers}/>
+        {this.props.mod ? <Moderation client={this.props.client} /> : <span></span>}
       </div>
     );
   }

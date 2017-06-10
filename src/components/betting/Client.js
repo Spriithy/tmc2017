@@ -147,4 +147,11 @@ export default class Client extends React.Component {
     this.send({ id: 8, winner: val });
   }
 
+  coteOf = (i) => {
+    if (this.racers[i].currentValue === 0)
+      return 1;
+
+    return this.racers.map((r) => r.currentValue).reduce((p, c) => p + c, 0) / this.racers[i].currentValue;
+  }
+
 }
