@@ -117,6 +117,9 @@ export default class Client extends React.Component {
     }
 
     this.app.forceUpdate();
+
+    console.log('RACERS:')
+    console.log(this.racers)
   }
 
   send = (toSend, stringify = true) => {

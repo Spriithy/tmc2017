@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../../../styles/shared.css';
+
 export default class WinnerSelect extends React.Component {
 
   handleChange = (event) => {
@@ -8,18 +10,18 @@ export default class WinnerSelect extends React.Component {
 
   handleValidate = (event) => {
     event.preventDefault();
-
     this.props.client.endSession(this.state.value);
   }
 
   render = () => {
     return (
-      <div className="WinnerWrapper">
-        <select className="WinnerSelect" onChange={this.handleChange} id="winner-select">
+      <div className="WinnerWrapper" style={{ display: this.props.client.racers.length === 0 ? "none" : "inline-block" }}>
+        <div className="Label">Choisissez le vainqueur</div>
+        <select className="Input GroupedSelect" onChange={this.handleChange} id="winner-select">
           <option selected disabled>Vainqueur ...</option>
           {this.props.client.racers.map((r, i) => <option value={i}>{r.name}</option>)}
         </select>
-        <button className="WinnerValidate" onClick={this.handleValidate}>Valider</button>
+        <button className="Button GroupedButton" onClick={this.handleValidate}>Valider</button>
       </div>
     );
   }

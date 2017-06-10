@@ -1,39 +1,47 @@
 .BettingUI {
   width: 100%;
   margin: 0;
-
   padding: 40px;
 }
 
 .BetInputWrapper {
-  display: inline-block;
   overflow: hidden;
-  border-radius: 3px;
+  display: inline-block;
 
   outline: none;
 
+  padding: 10px;
+
   & > * {
-    vertical-align: top;
-    border: 0;
-    border-radius: 3px;
-    margin: 0;
-    padding: 3px 10px;
-    border-radius: 3px;
-    height: 44px;
-    font-size: 16px;
-    text-align: center;
+    vertical-align: middle;
   }
 
-  & input {
-    width: 100px;
-    border: 2px solid #28d244;
+  & button {
+    margin-left: 10px;
   }
+}
 
-  & .BetInput-Choices {
-    padding: 20px;
+/*
 
-    & .BetInput-Option {
-      padding: 5px;
-    }
-  }
+
+.UILeft {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  margin-top: -40px;
+}
+
+.UIRight {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  margin-top: -40px;
+}*/
+
+.Currency {
+  padding: 10px;
+}
+
+.Balance {
+  color: #00c853;
 }

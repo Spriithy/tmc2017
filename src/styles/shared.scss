@@ -1,0 +1,108 @@
+.Label {
+  padding: 5px;
+  font-style: italic;
+  color: #ccc;
+}
+
+.Input {
+  border: 0;
+  margin: 0;
+  padding: 3px 10px;
+
+  width: 100px;
+  height: 44px;
+  text-align: center;
+  font-size: 16px;
+  display: inline-block;
+
+  border-radius: 3px;
+  border-bottom: 3px solid #cccccc;
+
+  &:focus {
+    border-bottom-color: #00c853;
+    transition: border-bottom-color 0.4s ease-in;
+  }
+}
+
+.Button {
+  border: 0;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 44px;
+  display: inline-block;
+  background: #f0f0f0;
+  text-align: center;
+  min-width: 60px;
+  color: #444444;
+  font-size: 16px;
+
+  margin-left: 10px;
+  border-radius: 3px;
+
+  border-bottom: 3px solid #cccccc;
+
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: #00c853;
+    border-bottom-color: #00a042;
+    transition: color 0.2s ease-in;
+    transition: background-color 0.1s ease-in;
+  }
+
+  &:active {
+    background-color: #00b44a;
+    transition: background-color 0.1s ease-in;
+  }
+}
+
+.GroupedButton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  color: white;
+  background-color: #00c853;
+  border-bottom-color: #00a042;
+
+  margin-left: 0;
+
+  &:hover {
+    background-color: #00a042;
+    border-bottom-color: #008c3a;
+  }
+}
+
+.GroupedInput {
+  width: 140px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &:focus {
+    border-bottom-color: #00a042;
+    transition: border-bottom-color 0.2s ease-in;
+  }
+
+  &::disabled {
+    background-color: #cccccc;
+  }
+}
+
+.GroupedSelect {
+  width: 140px;
+  -webkit-appearance: none;
+      -moz-appearance: none;
+          appearance: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &::disabled {
+    background-color: #cccccc;
+  }
+
+  &:focus {
+    border-bottom-color: #00a042;
+    transition: border-bottom-color 0.2s ease-in;
+  }
+}

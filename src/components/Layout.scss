@@ -8,11 +8,11 @@
 }
 
 html {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .LeftBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -21,7 +21,7 @@ html {
 
   z-index: 10;
 
-  background-color: #24bd3d;
+  background-color: #00a042;
   -webkit-box-shadow: 5px 0 5px 0 #191919;
           box-shadow: 5px 0 5px 0 #191919;
 
@@ -32,23 +32,25 @@ html {
     color: white;
     text-align: center;
 
-    background-color: #28d244;
+    background-color: #00c853;
     -webkit-box-shadow: 0px -10px 10px 0 #191919;
             box-shadow: 0px -10px 10px 0 #191919;
   }
 }
 
 .Body {
-  position: absolute;
+  position: fixed;
   left: 20%;
   top: 0;
   bottom: 0;
   width: 60%;
   height: 100%;
 
+  overflow: auto;
+
   z-index: 0;
 
-  background-color: #222222;
+  background-color: #2D2D2D;
 
   & > .Twitch-VideoPlayer {
     padding: 40px;
@@ -64,7 +66,7 @@ html {
 }
 
 .RightBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;

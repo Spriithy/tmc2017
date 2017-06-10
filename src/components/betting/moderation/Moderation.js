@@ -9,6 +9,7 @@ export default class Moderation extends React.Component {
   render = () => {
     return (
       <div className="Moderation">
+        <h1>Outils de Modération</h1>
         <RacerInput client={this.props.client} />
         <WinnerSelect client={this.props.client} />
       </div>

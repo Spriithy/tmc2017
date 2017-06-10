@@ -47,11 +47,10 @@ export default class Body extends React.Component {
   }
 
   render = () => {
-    var x = <VideoPlayer width={this.state.playerWidth} height={this.state.playerHeight} />;
     return (
       <div className="Body" style={{width: this.props.chat ? "60%" : "80%"}}>
         <ChatToggle chat={this.props.chat} toggleChat={this.props.toggleChat} />
-
+        <VideoPlayer width={this.state.playerWidth} height={this.state.playerHeight} />
         <div className="UI-Wrapper">
           {this.props.client.conn ? <BettingUI client={this.props.client} mod={this.props.client.moderator}/> : <button className="LoginButton" onClick={this.props.client.login}></button>}
         </div>

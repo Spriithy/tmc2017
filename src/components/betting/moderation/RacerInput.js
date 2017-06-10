@@ -13,9 +13,10 @@ export default class RacerInput extends React.Component {
 
     this.setState({ value: '' });
 
-    this.props.client.startSession(
-      this.state.value.split(',').map((r) => r.trim())
-    );
+    if (this.state.value.trim().length > 0)
+      this.props.client.startSession(
+        this.state.value.split(',').map((r) => r.trim())
+      );
   }
 
   handleChange = (event) => {
@@ -24,9 +25,10 @@ export default class RacerInput extends React.Component {
 
   render = () => {
     return (
-      <div className="ModerationRacerInput">
-        <input className="RacerInput" type="text" placeholder="CarlJr, Ayako, ..." value={this.state.value} onChange={this.handleChange}/>
-        <button className="RacerValidate" onClick={this.handleValidate}>Lancer</button>
+      <div className="ModerationRacerInput" style={{ display: this.props.client.racers.length !== 0 ? "none" : "inline-block" }}>
+        <div className="Label">Saisissez le nom des participants</div>
+        <input className="Input GroupedInput" type="text" placeholder="CarlJr, Ayako, ..." value={this.state.value} onChange={this.handleChange}/>
+        <button className="Button GroupedButton" onClick={this.handleValidate}>Lancer</button>
       </div>
     );
   }

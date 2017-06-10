@@ -1,137 +1,42 @@
 .Moderation {
   padding: 10px;
+  border-top: 2px solid #00c853;
+  border-radius: 2px;
+
+  & h1 {
+    font-size: 30px;
+    margin-left: -10px;
+    margin-bottom: 20px;
+  }
 }
 
 .ModerationRacerInput {
   display: inline-block;
   overflow: hidden;
-  background-color: #28d244;
-  border: 2px solid #28d244;
-  border-radius: 3px;
 
   outline: none;
 
   & > * {
     vertical-align: top;
-    border: 0;
-    border-radius: 3px;
     margin: 0;
-    padding: 3px 10px;
-    border-radius: 3px;
   }
 
-  & .RacerInput {
-    background-color: white;
-    color: #444444;
-
-    width: 160px;
-    height: 44px;
-    padding: 2px;
-
-    font-size: 14px;
-
-    border: none;
-    margin: 0 auto;
-
-    display: inline-block;
-
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-
-    text-align: center;
-  }
-
-  & .RacerValidate {
-    cursor: pointer;
-    border: none;
-
-    height: 44px;
-
-    margin: 0;
-    margin-left: 2px;
-
-    padding-left: 10px;
-    padding-right: 10px;
-
-    font-size: 18px;
-    display: inline-block;
-
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    color: white;
-    background-color: #28d244;
-
-    &:hover {
-      background-color: #20a836;
-    }
+  & input {
+    width: 200px;
   }
 }
 
 .WinnerWrapper {
   display: inline-block;
   overflow: hidden;
-  background-color: #28d244;
-  border: 2px solid #28d244;
-  border-radius: 3px;
-
-  margin-left: 20px;
 
   outline: none;
 
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  
   & > * {
     vertical-align: top;
-    border: 0;
-    border-radius: 3px;
-    margin: 0;
-    padding: 3px 10px;
-    border-radius: 3px;
   }
-
-  & .WinnerSelect {
-    margin: 0;
-    padding: 0;
-
-    height: 44px;
-
-    width: 160px;
-    text-align: center;
-
-    font-size: 14px;
-
-    border: none;
-    border-radius: 3px;
-    overflow: hidden;
-
-    background-color: white;
-    -webkit-appearance: none; /* Safari and Chrome */
-      -moz-appearance: none; /* Firefox */
-            appearance: none;
-  }
-
-  & .WinnerValidate {
-    cursor: pointer;
-    border: none;
-
-    height: 44px;
-
-    margin: 0;
-    margin-left: 2px;
-
-    padding-left: 10px;
-    padding-right: 10px;
-
-    font-size: 18px;
-    display: inline-block;
-
-    color: white;
-    background-color: #28d244;
-
-    &:hover {
-      background-color: #20a836;
-    }
-  }
-}
-.Balance {
-  color: green;
 }
