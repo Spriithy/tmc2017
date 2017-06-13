@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "electron": "^1.6.10",
     "jquery": "^3.2.1",
-    "materialize-css": "^0.98.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "tippy.js": "^0.16.3",
