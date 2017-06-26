@@ -8,11 +8,11 @@ export default class RacerInput extends React.Component {
     this.state = { value: '' };
   }
 
-  handleValidate = (name) => () => {
+  handleValidate = (id) => () => {
     this.setState({ value: '' });
 
     this.props.client.sendBid(
-        name, this.state.value
+        id, this.state.value
     );
   }
 
@@ -25,7 +25,7 @@ export default class RacerInput extends React.Component {
       <div className="BetInputWrapper" style={{ display: this.props.client.racers.length === 0 ? "none" : "inline-block" }}>
         <div className="Label">A votre tour de miser !</div>
         <input className="Input" type="text" placeholder="Somme" value={this.state.value} onChange={this.handleChange} />
-        {this.props.racers.map((r, i) => <button className="Button" title={"Cote: " + this.props.client.coteOf(i)} onClick={this.handleValidate(r)}>{r.name}</button>)}
+        {this.props.racers.map((r, i) => <button className="Button" title={"Cote: " + this.props.client.coteOf(i)} onClick={this.handleValidate(i)}>{r.name}</button>)}
       </div>
     );
   }

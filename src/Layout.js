@@ -43,7 +43,7 @@ export default class App extends Component {
   render = () => {
     return (
       <div >
-        <LeftBar />
+        <LeftBar client={this.state.client} />
         <Body toggleChat={this.toggleChat} chat={this.state.chat} client={this.state.client} />
         <RightBar display={this.state.chat} />
       </div>

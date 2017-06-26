@@ -1,0 +1,19 @@
+.BetTable {
+  color: white;
+
+  width: 95%;
+  padding: 5px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px; 
+
+  border-collapse: collapse;
+
+  & tr {
+    border-bottom: 1px solid #00903b;
+    
+    & th, & td {
+      padding-bottom: 3px;
+    }
+  }
+}

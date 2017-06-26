@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BetTable from '../display/BetTable';
+
 export default class Client extends React.Component {
   constructor(app) {
     super();
@@ -12,8 +14,10 @@ export default class Client extends React.Component {
     this.websocket = null;
     this.wsUri = "ws://perso.mog-creations.com:43042/";
 
+    this.bets = [];
     this.moderator = false;
     var init = this.init;
+    this.table = <BetTable bets={this.bets}/>
     var conn;
 
     window.Twitch.init({ clientId: this.twitchKey }, function (error, status) {
@@ -22,11 +26,11 @@ export default class Client extends React.Component {
 
       conn = status.authenticated;
 
-      if (status.authenticated) {
+      if (status.authenticated)
         console.log('Authenticated to Twitch!');
-        init();
-      }
     })
+
+    this.init();
 
     this.conn = conn;
     this.balance = 0;  
@@ -89,6 +93,9 @@ export default class Client extends React.Component {
         console.log('PLAYER STATUS: ' + (this.moderator ? 'MOD' : 'NONE'));
         break;
       case 3: // Error packet
+        if (data.error === 'BET_TIMER_ENDED') {
+          this.racers = [];
+        }
         alert(data.error);
         break;
       case 4: // Place in Auth queue
@@ -111,15 +118,17 @@ export default class Client extends React.Component {
         break;
       case 9: // Bet currently placed
         break;
+      case 10: // New emplaced bet 
+        //{ id: 10, name: "AlexMogTV", twitch_id: 74010347, racer_id: 0, currency: 100 }
+        this.bets.concat({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency });
+        console.log({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency })
+        break;
       default:
         console.log("PACKET NOT IMPLEMENTED");
         console.log(data);
     }
 
     this.app.forceUpdate();
-
-    console.log('RACERS:')
-    console.log(this.racers)
   }
 
   send = (toSend, stringify = true) => {
@@ -147,11 +156,19 @@ export default class Client extends React.Component {
     this.send({ id: 8, winner: val });
   }
 
-  coteOf = (i) => {
-    if (this.racers[i].currentValue === 0)
-      return 1;
+  sendBid = (id, val) => {
+    var bet = parseInt(val, 10)
 
-    return this.racers.map((r) => r.currentValue).reduce((p, c) => p + c, 0) / this.racers[i].currentValue;
+    if (isNaN(bet)) {
+      console.log('Cannot bet ' + val + ' on ' + this.racers[id].name);
+      return;
+    }
+
+    this.send({ id: 9, racer_id: id, value: bet });
+  }
+
+  coteOf = (i) => {
+    return this.racers[i].currentValue;
   }
 
 }
