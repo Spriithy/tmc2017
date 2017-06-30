@@ -3,6 +3,8 @@ import React from 'react';
 import BetTable from '../display/BetTable';
 import Notification from '../modalspace/notification/Notification';
 
+import $ from 'jquery';
+
 export default class Client extends React.Component {
   constructor(app) {
     super();
@@ -17,7 +19,6 @@ export default class Client extends React.Component {
 
     this.bets = [];
     this.moderator = false;
-    this.table = <BetTable bets={this.bets} />
     var conn;
 
    window.Twitch.init({ clientId: this.twitchKey }, function (error, status) {
@@ -92,7 +93,6 @@ export default class Client extends React.Component {
         break;
       case 2: // Auth status packet, defines if moderator or not
         this.moderator = data.moderator;
-        console.log('PLAYER STATUS: ' + (this.moderator ? 'MOD' : 'NONE'));
         break;
       case 3: // Error packet
         if (data.error === 'BET_TIMER_ENDED') {
@@ -117,6 +117,12 @@ export default class Client extends React.Component {
         this.gameON = true;
         this.racers = data.racers;
         this.racersNames = data.racers.map((r) => r.name);
+        setInterval(() => {
+          if ((data.bid_end_timestamp - Date.now()) / 1000 > 0 && this.gameON)
+            $('.Chrono').html('Temps restant: ' + Math.floor((data.bid_end_timestamp - Date.now()) / 1000));
+          else
+            $('.Chrono').html('Temps épuisé!')
+        }, 1000);
         break;
       case 8: // Session end packet
         // const winner = data.winner;
@@ -184,5 +190,4 @@ export default class Client extends React.Component {
     var val = (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) / this.racers[i].currentValue) - 1;
     return isNaN(val) ? '?' : val;
   }
-
 }
