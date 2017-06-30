@@ -3,6 +3,7 @@ import React from 'react';
 import ChatToggle from './ChatToggle';
 import VideoPlayer from './VideoPlayer';
 import BettingUI from './betting/BettingUI';
+import ModalSpace from './modalspace/ModalSpace';
 
 import $ from 'jquery';
 
@@ -49,11 +50,13 @@ export default class Body extends React.Component {
   render = () => {
     return (
       <div className="Body" style={{width: this.props.chat ? "60%" : "80%"}}>
+        <ModalSpace nots={this.props.client.nots}/>
         <ChatToggle chat={this.props.chat} toggleChat={this.props.toggleChat} />
         <VideoPlayer width={this.state.playerWidth} height={this.state.playerHeight} />
         <div className="UI-Wrapper">
           {this.props.client.conn ? <BettingUI client={this.props.client} mod={this.props.client.moderator}/> : <button className="LoginButton" onClick={this.props.client.login}></button>}
         </div>
+        <div className="Credits">Copyrights © <a href="https://twitter.com/AlexMog_FR">@AlexMog</a> et <a href="https://twitter.com/TheophileDano">@Spriithy</a></div>
       </div>
     );
   }

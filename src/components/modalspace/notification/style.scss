@@ -1,0 +1,41 @@
+.Notification {
+  border-top: 6px solid #444;
+  background-color: white;
+  border-radius: 1px;
+
+  width: 400px;
+  margin: 0 auto;
+  padding: 15px;
+
+  pointer-events: all;
+
+  margin-bottom: 20px; 
+
+  & > span {
+    float: right;
+    width: 18px;
+    height: 18px;
+    font-size: 24px;
+    text-align: center;
+    padding: 0px;
+    cursor: pointer;
+  }
+}
+
+.Notification-info {
+  border-top-color: #60C3ED;
+  background-color: #D1F1FF;
+  color: #0E4861;
+}
+
+.Notification-success {
+  border-top-color: #00c853;
+  background-color: #e1ffee;
+  color: #00a042;
+}
+
+.Notification-error {
+  border-top-color: #d52432;
+  background-color: #f1b6ba;
+  color: #d10c1c;
+}

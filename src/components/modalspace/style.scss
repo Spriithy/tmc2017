@@ -1,0 +1,9 @@
+.ModalSpace {
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 50px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+
+  pointer-events: none;
+}

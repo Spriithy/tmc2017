@@ -21,11 +21,17 @@ export default class RacerInput extends React.Component {
   }
 
   render = () => {
+    if (this.props.client.gameON)
+      return (
+        <div className="BetInputWrapper" style={{ display: this.props.client.racers.length === 0 ? "none" : "inline-block" }}>
+          <div className="Label">A votre tour de miser !</div>
+          <input className="Input" type="text" placeholder="Somme" value={this.state.value} onChange={this.handleChange} />
+          {this.props.racers.map((r, i) => <button className="Button" title={"Cote: " + this.props.client.coteOf(i)} onClick={this.handleValidate(i)}>{r.name}</button>)}
+        </div>
+      );
     return (
-      <div className="BetInputWrapper" style={{ display: this.props.client.racers.length === 0 ? "none" : "inline-block" }}>
-        <div className="Label">A votre tour de miser !</div>
-        <input className="Input" type="text" placeholder="Somme" value={this.state.value} onChange={this.handleChange} />
-        {this.props.racers.map((r, i) => <button className="Button" title={"Cote: " + this.props.client.coteOf(i)} onClick={this.handleValidate(i)}>{r.name}</button>)}
+      <div className="BetInputWrapper">
+        
       </div>
     );
   }

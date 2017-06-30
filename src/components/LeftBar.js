@@ -1,7 +1,5 @@
 import React from 'react';
 
-import BetTable from './display/BetTable';
-
 import './Layout.css';
 
 export default class LeftBar extends React.Component {

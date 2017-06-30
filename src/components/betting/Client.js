@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BetTable from '../display/BetTable';
+import Notification from '../modalspace/notification/Notification';
 
 export default class Client extends React.Component {
   constructor(app) {
@@ -16,11 +17,10 @@ export default class Client extends React.Component {
 
     this.bets = [];
     this.moderator = false;
-    var init = this.init;
-    this.table = <BetTable bets={this.bets}/>
+    this.table = <BetTable bets={this.bets} />
     var conn;
 
-    window.Twitch.init({ clientId: this.twitchKey }, function (error, status) {
+   window.Twitch.init({ clientId: this.twitchKey }, function (error, status) {
       if (error)
         console.log(error);
 
@@ -33,7 +33,8 @@ export default class Client extends React.Component {
     this.init();
 
     this.conn = conn;
-    this.balance = 0;  
+    this.balance = 0; 
+    this.gameON = false;
   }
 
   init = () => {
@@ -49,6 +50,7 @@ export default class Client extends React.Component {
     this.websocket.onmessage = this.onMessage;
     this.websocket.onerror = this.onError;
     this.closed = false;
+    this.nots = [];
   }
 
   login = () => {
@@ -94,12 +96,15 @@ export default class Client extends React.Component {
         break;
       case 3: // Error packet
         if (data.error === 'BET_TIMER_ENDED') {
-          this.racers = [];
+          this.nots = this.nots.concat([<Notification title={"Erreur"} text="Le temps pour parier est écoulé!" type="error" />]);
+          break;
         }
-        alert(data.error);
+        
+        this.nots = this.nots.concat([<Notification title={"Erreur"} text={data.error} type="error" />]);
         break;
       case 4: // Place in Auth queue
-        // TODO...
+        if (data.place > 1)
+          this.nots = this.nots.concat(<Notification type="info" title="Veuillez patienter!" text={"Vous etes " + data.place + "-eme dans la file d'attente"} />)
         break;
       case 5: // Current currency packet
         this.balance = data.currency;
@@ -108,20 +113,26 @@ export default class Client extends React.Component {
         this.racers[data.racer_id].currentValue = data.bid_value;
         break;
       case 7: // Session start packet
+        this.nots = this.nots.concat(<Notification type="info" title="Ouverture des mises!" text="Faites vos jeux!" />)
+        this.gameON = true;
         this.racers = data.racers;
-        console.log(this.racers)
+        this.racersNames = data.racers.map((r) => r.name);
         break;
       case 8: // Session end packet
         // const winner = data.winner;
         this.winner = this.racers[data.winner].name;
         this.racers = [];
+        this.bets = [];
+        this.table = <BetTable bets={this.bets} />
+        this.nots = this.nots.concat([<Notification type="success" title={"Victoire de " + this.winner} text="" />])
         break;
       case 9: // Bet currently placed
         break;
       case 10: // New emplaced bet 
         //{ id: 10, name: "AlexMogTV", twitch_id: 74010347, racer_id: 0, currency: 100 }
-        this.bets.concat({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency });
-        console.log({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency })
+        this.bets = this.bets.concat({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency });
+        this.table = <BetTable bets={this.bets} />
+        console.log({ player: data.name, racer: this.racersNames[data.racer_id].name, value: data.currency })
         break;
       default:
         console.log("PACKET NOT IMPLEMENTED");
@@ -149,7 +160,7 @@ export default class Client extends React.Component {
   endSession = (id) => {
     var val = parseInt(id, 10);
     if (isNaN(val)) {
-      alert("Une valeur numérique entière est naisséssaire.");
+      this.nots = this.nots.concat(<Notification type="error" title="Erreur de saisie" text="La mise n'est pas un nombre entier!" />)
       return;
     }
 
@@ -160,15 +171,23 @@ export default class Client extends React.Component {
     var bet = parseInt(val, 10)
 
     if (isNaN(bet)) {
-      console.log('Cannot bet ' + val + ' on ' + this.racers[id].name);
+      this.nots = this.nots.concat(<Notification type="error" title="Erreur de saisie" text="La mise n'est pas un nombre!" />)
       return;
     }
+
+    if (bet > this.balance) {
+      this.nots = this.nots.concat(<Notification type="error" title="Erreur!" text="Montant du pari trop élevé!" />)
+      return;
+    }
+
+    this.balance -= bet;
+    this.gameON = false;
 
     this.send({ id: 9, racer_id: id, value: bet });
   }
 
   coteOf = (i) => {
-    return this.racers[i].currentValue;
+    return (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) - this.racers[i].currentValue)/this.bets.length;
   }
 
 }

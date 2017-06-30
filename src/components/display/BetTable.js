@@ -3,10 +3,6 @@ import React from 'react';
 import './style.css';
 
 export default class BetTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
   render = () => {
     return (
       <table className="BetTable">
@@ -19,5 +15,4 @@ export default class BetTable extends React.Component {
       </table>
     );
   }
-
 }

@@ -19,6 +19,9 @@ html {
   width: 20%;
   height: 100%;
 
+  overflow-x: hidden;
+  overflow-y: auto;
+
   z-index: 10;
 
   background-color: #00a042;
