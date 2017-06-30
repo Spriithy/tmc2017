@@ -5,13 +5,18 @@ var $ = window.$;
 
 var id = 0;
 
+$('.Notification').fadeIn(300);
+
 export default class Notification extends Component {
   constructor(props) {
     super(props);
-    this.id = id++;
+    this.id = id++; 
+
+    setTimeout(this.dismiss, 5000);
   }
 
   dismiss = () => {
+    $('#not-' + this.id).fadeOut(300);
     $('#not-' + this.id).remove();
   }
 

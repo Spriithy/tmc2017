@@ -133,7 +133,6 @@ export default class Client extends React.Component {
         //{ id: 10, name: "AlexMogTV", twitch_id: 74010347, racer_id: 0, currency: 100 }
         this.bets = this.bets.concat({ player: data.name, racer: this.racers[data.racer_id].name, value: data.currency });
         this.table = <BetTable bets={this.bets} />
-        console.log({ player: data.name, racer: this.racersNames[data.racer_id].name, value: data.currency })
         break;
       default:
         console.log("PACKET NOT IMPLEMENTED");
@@ -182,7 +181,7 @@ export default class Client extends React.Component {
   }
 
   coteOf = (i) => {
-    return (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) - this.racers[i].currentValue)/this.bets.length;
+    return (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) / this.racers[i].currentValue) - 1;
   }
 
 }
