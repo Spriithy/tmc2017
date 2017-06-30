@@ -181,7 +181,8 @@ export default class Client extends React.Component {
   }
 
   coteOf = (i) => {
-    return (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) / this.racers[i].currentValue) - 1;
+    var val = (this.racers.map((r) => r.currentValue).reduce((pv, cv) => pv+cv, 0) / this.racers[i].currentValue) - 1;
+    return isNaN(val) ? '?' : val;
   }
 
 }
