@@ -70,11 +70,11 @@ export default class Client extends React.Component {
   }
 
   onClose = (evt) => {
-    console.log('DISCONNECTED');
+    this.nots = this.nots.concat(<Notification type="error" title="Vous avez été deconnecté" text="Le serveur n'est plus acessible ... veuillez rafraichir la page" />)
   }
 
   onError = (evt) => {
-    console.log('ERROR: ' + evt.data);
+    this.nots = this.nots.concat(<Notification type="error" title="Erreur" text={evt.data} />)
   }
 
   onMessage = (evt) => {
@@ -127,6 +127,7 @@ export default class Client extends React.Component {
         this.nots = this.nots.concat([<Notification type="success" title={"Victoire de " + this.winner} text="" />])
         break;
       case 9: // Bet currently placed
+        this.gameON = false;
         break;
       case 10: // New emplaced bet 
         //{ id: 10, name: "AlexMogTV", twitch_id: 74010347, racer_id: 0, currency: 100 }
