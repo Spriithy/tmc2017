@@ -158,13 +158,7 @@ export default class Client extends React.Component {
     });
   }
 
-  endSession = (id) => {
-    var val = parseInt(id, 10);
-    if (isNaN(val)) {
-      this.nots = this.nots.concat(<Notification type="error" title="Erreur de saisie" text="La mise n'est pas un nombre entier!" />)
-      return;
-    }
-
+  endSession = (val) => {
     this.send({ id: 8, winner: val });
   }
 
